@@ -38,17 +38,34 @@
   </p>
 <% end %>
 
+
+
+
 <div id="facets">
   <h3>Published</h3>
   <ul>
     <% for row in @search.facet(:publish_month).rows %>
-      <li>
+      <!-- <li>
         <% if params[:month].blank? %>
           <%= link_to row.value, :month => row.value %> (<%= row.count %>)
         <% else %>
           <strong><%= row.value %></strong> (<%= link_to "remove", :month => nil %>)
         <% end %>
+      </li> -->
+  
+         <div class="results">
+   <% @search.each_hit_with_result do |hit, book| -%>
+    <div class="result">
+          <li>
+          <h2><%= book.title %><%= hit.score %></h2>
       </li>
+      
+    </div>
+  <% end -%>
+</div>
+
+
+      
     <% end %>
   </ul>
 </div>

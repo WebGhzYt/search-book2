@@ -5,8 +5,8 @@ class BooksController < ApplicationController
   # GET /books.json
   
     # @books = Book.all
-     def index
-     @search = Book.search do
+  def index
+    @search = Book.search do
     fulltext params[:search]
     with(:created_at).less_than(Time.zone.now)
     facet(:publish_month)
