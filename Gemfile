@@ -7,6 +7,7 @@ gem 'rails', '4.2.0.rc3'
 gem 'pg'
 gem 'sunspot_rails'
 # Use SCSS for stylesheets
+gem 'devise'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

@@ -1,0 +1,6 @@
+<% @tags.each do |tag| %>
+Tag Id
+  <%= tag.id %>
+  <br>Linking with Book Id 
+  <%= tag.book.id %>
+<% end %>

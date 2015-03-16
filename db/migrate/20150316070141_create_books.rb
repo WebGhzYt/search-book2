@@ -6,5 +6,6 @@ class CreateBooks < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+     add_foreign_key :books, :tags
   end
 end
