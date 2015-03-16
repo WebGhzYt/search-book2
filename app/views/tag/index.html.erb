@@ -1,6 +1,37 @@
-<% @tags.each do |tag| %>
+<!-- <%# @tags.each do |tag| %>
 Tag Id
-  <%= tag.id %>
+  <%#= tag.id %>
   <br>Linking with Book Id 
-  <%= tag.book.id %>
+  <%#= tag.book.id %>
+<%# end %>
+ -->
+<%= form_tag tag_index_path, :method => :get do %>
+  <p>Search Tag
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
 <% end %>
+<div id="facets">
+  <h3>Published</h3>
+  <ul>
+    <% for row in @search.facet(:publish_month).rows %>
+      <!-- <li>
+        <% if params[:month].blank? %>
+          <%= link_to row.value, :month => row.value %> (<%= row.count %>)
+        <% else %>
+          <strong><%= row.value %></strong> (<%= link_to "remove", :month => nil %>)
+        <% end %>
+      </li>
+      -->
+      <div class="results">
+        <% @search.each_hit_with_result do |hit, tag| -%>
+          <div class="result">          
+            <h2><%= hit.stored(:name) %>
+            <%#= tag.name %>
+            <%= hit.score %></h2>
+          </div>
+        <% end -%>
+      </div>
+    <% end %>
+  </ul>
+</div>

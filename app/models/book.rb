@@ -1,10 +1,9 @@
 class Book < ActiveRecord::Base
 has_many :tag, dependent: :destroy
- belongs_to :tag
+ belongs_to :issuer
 
 searchable do
-# @sunspot_serarch = Sunspot.search Book do
-  text :title
+  text :title, :stored => true
   text :author, :publish_month
   time :created_at
   string :publish_month

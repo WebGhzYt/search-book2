@@ -6,13 +6,31 @@ class BooksController < ApplicationController
   
     # @books = Book.all
   def index
-    @search = Book.search do
-    fulltext params[:search]
-    with(:created_at).less_than(Time.zone.now)
-    facet(:publish_month)
-    with(:publish_month, params[:month]) if params[:month].present?
-  end
-  @books = @search.results
+    # @search = Book.search do
+    # @search = Sunspot.search(Tag,Book) do
+
+    # @search_choice = params[:search]
+    # if @search_choice == 'book'
+      @search = Sunspot.search(Book) do |query| 
+      query.keywords params[:search]
+      # query.fulltext params[:search]
+      # query.with(:age).less_than 2
+      query.order_by(:created_at, :desc)
+      query.with(:created_at).less_than(Time.zone.now)
+      query.facet(:publish_month)
+      query.with(:publish_month, params[:month]) if params[:month].present?
+      end
+      @books = @search.results
+    # else
+
+      @search_all = Sunspot.search(Tag,Book) do
+      fulltext params[:search_all]
+      with(:created_at).less_than(Time.zone.now)
+      facet(:publish_month)
+      with(:publish_month, params[:month]) if params[:month].present?
+      end
+      @books_tag_all = @search_all.results
+    # end  
   end
   
   # GET /books/1

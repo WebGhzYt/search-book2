@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'issuer/index'
+
   devise_for :students
   
   root 'books#index'
