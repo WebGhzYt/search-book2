@@ -1,0 +1,23 @@
+development:
+  host: localhost
+  adapter: postgresql
+  encoding: unicode
+  database: book-search2
+  pool: 5
+  username: postgres
+  password: postgres
+  timeout: 5000
+
+
+production:
+  host: firstass
+  adapter: postgresql
+  encoding: unicode
+  database: book-search2
+  pool: 5
+  username: postgres
+  password: postgres
+  timeout: 5000
+
+
+
